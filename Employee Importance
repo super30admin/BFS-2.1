@@ -1,0 +1,42 @@
+//Time Complexity: O(N)
+//Space Complexity: O(N) ?? 
+
+//Approach: Idea is to use a HashMap to store employee id and it's reference.
+//Hint here is to analyze EMPLOYEE data type and perform bfs on relevant id to get it's impoortance based on BFS traverse.
+/*
+// Definition for Employee.
+                class Employee {
+                    public int id;
+                    public int importance;
+                    public List<Integer> subordinates;
+                };
+*/
+
+class Solution {
+    public int getImportance(List<Employee> employees, int id) {
+        if(employees==null){
+            return 0;
+        }
+        
+        int count = 0;
+        HashMap<Integer, Employee> hmap = new HashMap<>();
+        Queue<Employee> que = new LinkedList<>();
+        
+        //Adding key = id && value = *reference to EMPLOYEE[1,5,[2,3]] 
+        for(Employee emp : employees){
+            hmap.put(emp.id,emp);
+        }
+        
+        que.add(hmap.get(id));
+        while(!que.isEmpty()){
+            Employee currEmployee = que.peek();
+                // System.out.println(currEmployee);
+            count += currEmployee.importance;
+            for(int i : currEmployee.subordinates){
+                que.add(hmap.get(i));
+            }
+            que.poll();
+        }
+        return count;
+    }
+}
