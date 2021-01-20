@@ -1,5 +1,5 @@
-// Time Complexity : The time complexity is O(n) where n is the number of nodes
-// Space Complexity : The space complexity is O(1)
+// Time Complexity : The time complexity is O(n) where n is the number of employees
+// Space Complexity : The space complexity is O(n2) where n is the number of employees
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : No
 
