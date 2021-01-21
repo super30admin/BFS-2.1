@@ -39,18 +39,59 @@ class EmployeeImportance{
 
        return importance;
    }
-   private int dfs(int id){
-       if(arrList.get(id) == null || arrList.get(id).size() == 0){
-           return 0;
-       }
+
+   // class room version
+   // T(n) = O(V) -
+   // S(n) = O(V) - Hashmap
+   public int getImportanceBFS(List<Employee> employees, int id) {
+     if(employees == null || employees.size() == 0){
+         return 0;
+     }
+     int result = 0;
+     Queue<Integer> q = new LinkedList<>();
+     q.add(id);
+     HashMap<Integer, Employee> map = new HashMap<>();
+     for(Employee emp : employees){
+       map.put(emp.id, emp);
+     }
+
+     while(!q.isEmpty()){
+        Employee curr = map.get(q.poll());
+        result += curr.importance;
+        for(int subId : curr.subordinates){
+          q.add(subId);
+        }
+     }
+
+     return result;
+   }
+
+
+   int result = 0;
+   HashMap<Integer, Employee> map = new HashMap<>();
+   public int getImportanceDFS(List<Employee> employees, int id) {
+     if(employees == null || employees.size() == 0){
+         return 0;
+     }
+
+     for(Employee emp : employees){
+       map.put(emp.id, emp);
+     }
+     dfs(id);
+     return result;
+   }
+
+   // S(n) = O(V) - Hashmap
+   private  void dfs(int id){
+      // base case - we're iterating over emp.subordintes so won't go out of bounds
+      // no need of base case
 
        // logic
-       for(int i = 0 ;i < arrList.get(id).size(); i++){
-            importance +=  map.get(id);
-            dfs(arrList.get(id).get(i));
+       Employee emp = map.get(id);
+       result += emp.importance;
 
+       for(int subId  : emp.subordinates){
+            dfs(subId);
        }
-
-       return importance;
    }
  }

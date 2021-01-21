@@ -63,4 +63,54 @@ class RottenOranges {
 
       return minutes;
   }
+
+  private static int rottenOranges(int[][] grid){
+
+    // BFS
+    int fresh = 0;
+    int time = 0;
+    int m = grid.length;
+    int n = grid[0].lenght;
+
+    Queue<int []> q = new LinkedList<>();
+    for(int i = 0; i < grid.length; i++){
+        for(int j = 0; j < grid[0].length; j++){
+          if(grid[i][j] == ROTTEN){
+            q.add(new int[]{i,0});
+          }else if( grid[i][j] == FRESH){
+            fresh++;
+          }
+        }
+    }
+
+    if(fresh == 0) return 0;
+    int[][] directions = new int[][]{{0,1},{1,0},{-1,0},{0,-1}};
+
+    while(!q.isEmpty()){
+      // we are distinguishing at each level.
+      // at each level we're incrementing the minute and making max 4 oranges so we need a size var
+      
+      int size = q.size();
+      for(int i = 0 ;i < size; i++){
+        int [] curr = q.poll();
+        for(int[] dir : directions){
+          int r = curr[0] + dir[0];
+          int c = curr[1] + dir[1];
+          if(r >= 0 && r < m && c >= 0 && c < n && grid[i][j] == FRESH){
+            grid[r][c] = ROTTEN;
+            q.add(new int[]{r,c});
+            fresh--;
+          }
+        }
+        time++;
+      }
+    }
+
+    if(fresh == 0){
+      return time -1;
+    }else{
+      return -1;
+    }
+
+  }
 }
