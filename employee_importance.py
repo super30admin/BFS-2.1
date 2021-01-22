@@ -1,5 +1,5 @@
 # Time complexity:  O(V + E) - No. of vertices as employees
-# Space complexity:  O(1)
+# Space complexity:  O(V + E) - since we are storing V and E
 # Did this code successfully run on Leetcode : Yes
 # Any problem you faced while coding this : No
 """
