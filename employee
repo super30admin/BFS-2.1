@@ -1,0 +1,26 @@
+//Time Complexity:O(n)
+//Space complexity: O(maximum number of subordinates)
+
+class Solution {
+public:
+    int getImportance(vector<Employee*> employees, int id) {
+        queue<int> que;
+        map<int,Employee*> mp;
+        int sum=0;
+        for(Employee* emp:employees)
+        {
+            mp[emp->id]=emp;
+        }
+        que.push(id);
+        while(!que.empty())
+        {
+           int i=que.front();
+            que.pop();
+            sum+=mp[i]->importance;
+            vector<int> x=mp[i]->subordinates;
+            for(int j=0;j<x.size();j++)
+                que.push(x[j]);
+        }
+        return sum;
+    }
+};
