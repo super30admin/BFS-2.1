@@ -5,7 +5,6 @@
 
 
 // Your code here along with comments explaining your approach
-// We are using a BFS approach here.We iterate at all levels and whenever we see the right most element at any level , we add that to the result .
 class Solution {
     public int orangesRotting(int[][] grid) {
       
@@ -33,7 +32,7 @@ class Solution {
           //count number of fresh oranges
           if(grid[i][j]==1)
           {
-            
+
             fresh++;
           }
         }
