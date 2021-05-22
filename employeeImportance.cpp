@@ -1,7 +1,7 @@
 // Time Complexity :O(N) where n in the number of employees
 // Space Complexity : O(N)  
 // Did this code successfully run on Leetcode : Yes
-// Any problem you faced while coding this : No
+// Any problem you faced while coding this :No
 
 /*
 // Definition for Employee.
