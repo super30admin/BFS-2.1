@@ -2,8 +2,8 @@
 
 // time complexity: O(mxn)
 // space complexity: O(mxn) for queue
-// run on Leetcode:
-// issues faced:
+// run on Leetcode: yes
+// issues faced: if(queue.isEmpty() && freshOranges == 0) couldn't come up with these edge cases.
 
 class Solution {
     public int orangesRotting(int[][] grid) {
