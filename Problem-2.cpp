@@ -8,7 +8,7 @@ public:
 };
 Time Complexity = O(N)
 Space Complexity = O(N)
-where N is the number of nodes on the tree and h is the height of the tree.
+where N is the number of elements in the vector employees.
 */
 class Solution {
 public:
@@ -49,7 +49,7 @@ public:
 };
 Time Complexity = O(N)
 Space Complexity = O(N)
-where N is the number of nodes on the tree and h is the height of the tree.
+where N is the number of elements in the vector employees.
 */
 class Solution {
 public:
