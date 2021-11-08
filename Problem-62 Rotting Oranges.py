@@ -1,10 +1,12 @@
 # 994. Rotting Oranges
 # https://leetcode.com/problems/rotting-oranges/
 
-# Logic: 
+# Logic: You identify the independent node i.e. cells that have rotten oranges and add them to the queue. 
+# Then apply BFS from all these cells. Update the cell in the neighbour of rotten orange if it is fresh. 
+# While identifying rotten oranges we will count fresh oranges and reduce the count as we mark them as rotten.
 
 # Time Complexiety: O(n*m)
-# Space Complexiety: 
+# Space Complexiety: O(n*m)
 
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
