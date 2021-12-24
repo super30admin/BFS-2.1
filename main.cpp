@@ -1,60 +1,39 @@
-// Time Complexity = O(M * N)
-// Space Complexity = O(M * N)
-
+/*
+// Definition for Employee.
+class Employee {
+public:
+    int id;
+    int importance;
+    vector<int> subordinates;
+};
+*/
+//Time Complexity --> O(N)
+//Space Complexity --> O(N)
 class Solution {
 public:
-    int orangesRotting(vector<vector<int>>& grid) {
-        if(grid.size() == 0){
+    int getImportance(vector<Employee*> employees, int id) {
+        if(employees.size() == 0){
             return 0;
         }
-        int fresh = 0;
-        queue<vector<int>> q;
-        vector<vector<int>> dircts = {{0,1},{0,-1},{1,0},{-1,0}};
-        int rows = grid.size();
-        int cols = grid[0].size();
-
-        for(int i = 0; i< rows;i++){
-            for(int j = 0; j < cols;j++){
-                if(grid[i][j] == 1){
-                    fresh++;
-                }else if(grid[i][j] == 2){
-                    q.push({i,j});
-                }
-            }
+        int total = 0;
+        queue<int> q;
+        map<int, Employee*> m;
+        for(int i= 0; i< employees.size();i++){
+            m[employees[i]->id] = employees[i];
         }
-        if(fresh == 0){
-            return 0;
-        }
-        int time = 0;
+        q.push(id);
         while(!q.empty()){
-            int size = q.size();
-            for(int i = 0 ; i < size ; i++)
-            {
-                vector<int> temp = q.front();
-                q.pop();
-
-                for(vector<int> dir : dircts){
-                    int nr = temp[0] + dir[0];
-                    int nc = temp[1] + dir[1];
-
-                    if(nr >= 0 && nr < rows && nc >= 0 && nc < cols && grid[nr][nc] == 1){
-                        grid[nr][nc] = 2;
-                        q.push({nr,nc});
-                        fresh--;
-                    }
-                }
+            int temp = q.front();
+            q.pop();
+            Employee * emp = m[temp];
+            total += emp->importance;
+            for(int i = 0; i < emp->subordinates.size(); i++){
+                q.push(emp->subordinates[i]);
             }
-
-            time++;
         }
-        if(fresh != 0){
-            return -1;
-        }
-        return time-1;
+        return total;
     }
 };
-
-
 
 
 
