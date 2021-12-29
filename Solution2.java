@@ -1,3 +1,8 @@
+//BFS
+// Time Complexity :O(V+E)traverse over the employeee and its subsequent adjacency list E, V being the number of employees, E being list of subordinates, cannot go beyond O(V)
+// Space Complexity :O(V) maximum elements in queue
+// Did this code successfully run on Leetcode :Yes
+// Any problem you faced while coding this :
 class Solution2 {
     // Definition for Employee.
 class Employee {
@@ -30,6 +35,8 @@ class Employee {
     }
 
     //DFS 
+// Time Complexity :O(V+E)traverse over the employeee and its subsequent adjacency list E, V being the number of employees, E being list of subordinates, cannot go beyond O(V)
+// Space Complexity :O(V) maximum elements in map +recursive stack space
     HashMap<Integer,Employee> map1;
     int total1;
     public int getImportance1(List<Employee> employees, int id) {
