@@ -1,4 +1,4 @@
-class Solution {
+class Solution2 {
     // Definition for Employee.
 class Employee {
     public int id;
