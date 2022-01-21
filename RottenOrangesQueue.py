@@ -1,4 +1,8 @@
-
+# Time Complexity : O(M * N)
+# Space Complexity : O(M * N)
+# M, N are numROWS and numCOLS respectively.
+# Did this code successfully run on Leetcode : Yes
+# Any problem you faced while coding this : No
 
 from collections import deque
 class Solution:
