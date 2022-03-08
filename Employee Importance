@@ -1,0 +1,38 @@
+//TC = O(n)  n -> no. of subordinates
+//SC = O(n)
+class Solution {
+    
+    public int getImportance(List<Employee> employees, int id) {
+        
+        HashMap<Integer, Employee> idToEmp = new HashMap<>();
+        
+        for(Employee e : employees){
+            
+            idToEmp.put(e.id, e);  //putting ids and their employees in map
+        }
+        
+        int totalImp = 0; 
+        Queue<Employee> q = new LinkedList<>();
+        
+        q.add(idToEmp.get(id));  //adding id from hashmap to queue
+        
+        
+        while(!q.isEmpty()){
+            
+            Employee e = q.remove();
+            
+            totalImp += e.importance;  //adding importance of employee to toal importance
+
+            
+            for(int i=0; i<e.subordinates.size(); i++){  //iterating over subordinates
+                
+                int suborId = e.subordinates.get(i);    //intializing suborId = subordinates of emp 
+                
+                q.add(idToEmp.get(suborId));  //adding suborId from map to queue
+            }
+        }
+        
+        return totalImp; //since its int type
+        
+    }
+}
