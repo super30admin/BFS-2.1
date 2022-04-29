@@ -81,7 +81,7 @@ class Solution {
 /**
 Approach 2: DFS
 TC: O(m*n)^2
-SC: O(m*n)^2
+SC: O(m*n)
 */
 class Solution {
     int m, n;
