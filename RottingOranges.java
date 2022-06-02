@@ -62,8 +62,8 @@ class Solution {
     }
 }
 // -----------------------BFS------------------------------------
-// Time Complexity :min of m and n
-// Space Complexity :O(mn)
+// Time Complexity :O(mn)
+// Space Complexity :min of m and n
 // Did this code successfully run on Leetcode :No
 // Any problem you faced while coding this :No
 
