@@ -1,7 +1,7 @@
 
 //---------------------DFS-----------------------------
-// Time Complexity :O(mn)
-// Space Complexity :O(h)
+// Time Complexity :O(mn)^2
+// Space Complexity :O(mn)
 // Did this code successfully run on Leetcode :yes
 // Any problem you faced while coding this :was difficult to manage maxtime
 
@@ -16,7 +16,6 @@ class Solution {
             return -1;
 
         int fresh = 0;
-        max = 2;
         int m = grid.length;
         int n = grid[0].length;
         // if(m==1 && grid[m-1][n-1]!=1)return 0;
@@ -63,7 +62,7 @@ class Solution {
 }
 // -----------------------BFS------------------------------------
 // Time Complexity :O(mn)
-// Space Complexity :min of m and n
+// Space Complexity :O(mn) space will be min of m and n in case rotten orange is at corner and all other are fresh
 // Did this code successfully run on Leetcode :No
 // Any problem you faced while coding this :No
 
