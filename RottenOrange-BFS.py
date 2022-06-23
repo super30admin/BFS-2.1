@@ -1,5 +1,5 @@
 Time Complexity: O(m*n)
-Space Complexity:O(n)
+Space Complexity:O(m*n)
 from collections import deque
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
