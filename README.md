@@ -1,4 +1,4 @@
-# BFS-2.1
+# BFS-2-1
 
 
 ## Problem 1
