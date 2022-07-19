@@ -10,7 +10,7 @@ class Solution(object):
         Then put the neighbors into the queue and while adding it into the queue make it rotten, that is change its state.
         '''
         #Time Complexity: O(mn)
-        #Sapace Complexity: O(n)
+        #Sapace Complexity: O(mn)
         
         #Edge case
         if len(grid)==0:
