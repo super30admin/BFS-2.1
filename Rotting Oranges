@@ -1,0 +1,46 @@
+class Solution:
+    #timeComplexity:O(M*N) SpaceComplexity:O(M*N)
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        
+        if grid == None or len(grid) == 0:
+            return 0;
+        curr_nodes = []
+        fresh_Oranges = 0
+        m = len(grid)
+        n = len(grid[0])
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == 2:
+                    curr_nodes.append((i,j))
+                elif grid[i][j] == 1:
+                    fresh_Oranges = fresh_Oranges + 1
+        steps = 0
+        while fresh_Oranges > 0:
+            next_nodes = []
+            if len(curr_nodes) == 0:
+                return -1
+            for nd in curr_nodes:
+                i,j = nd
+                if i > 0 and grid[i-1][j] == 1:
+                    grid[i-1][j] = 2
+                    fresh_Oranges = fresh_Oranges - 1
+                    next_nodes.append((i-1,j))
+                if j > 0 and grid[i][j-1] == 1:
+                    grid[i][j-1] = 2
+                    fresh_Oranges = fresh_Oranges - 1
+                    next_nodes.append((i,j-1))
+                    
+                if i < m-1 and grid[i+1][j] == 1:
+                    grid[i+1][j] = 2
+                    fresh_Oranges = fresh_Oranges - 1
+                    next_nodes.append((i+1,j))
+                    
+                if j < n-1 and grid[i][j+1] == 1:
+                    grid[i][j+1] = 2
+                    fresh_Oranges = fresh_Oranges - 1
+                    next_nodes.append((i,j+1))
+            steps = steps + 1
+            curr_nodes = next_nodes
+            
+        return steps
+        
