@@ -1,3 +1,7 @@
+// Time Complexity : O(V+E)
+// Space Complexity : O(V)
+// Did this code successfully run on Leetcode :
+// Any problem you faced while coding this :
 /*
 // Definition for Employee.
 class Employee {
