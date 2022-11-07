@@ -3,6 +3,7 @@
 # Does this code run on Leetcode: Yes
 # Did you find any difficulty in coding the solution: No
 class Solution:
+    
     def getImportance(self, employees, id):
         id_to_emp = {employee.id: employee for employee in employees}
         importance = 0

@@ -3,6 +3,7 @@
 # Does this code run on Leetcode: Yes
 # Did you find any difficulty in coding the solution: No
 class Solution:
+    
     def orangesRotting(self, grid: List[List[int]]) -> int:
         q = collections.deque()
         fresh = 0
