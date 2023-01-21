@@ -1,0 +1,73 @@
+/*
+// Definition for Employee.
+class Employee {
+    public int id;
+    public int importance;
+    public List<Integer> subordinates;
+};
+*/
+
+//BFS : Use queue and map (adjacency list)
+//Time complexity : Graph - O(V+E) -- (V : Vertices, E : Edges)
+//Space complexity : O(V+E)
+
+class Solution {
+    public int getImportance(List<Employee> employees, int id) {
+        if(employees == null || employees.size() == 0) { return 0; }
+        
+        Map<Integer, Employee> map = new HashMap<>();
+        Queue<Integer> q = new LinkedList<>();
+        
+        for(Employee e : employees) {
+            map.put(e.id, e);
+        }
+        
+        Employee e = map.get(id);
+        q.add(e.id);
+        
+        int importance = 0;
+        while(!q.isEmpty()) {
+            int currId = q.poll();
+            Employee emp = map.get(currId); 
+            importance = importance + emp.importance;
+            
+            for(Integer subOrdinate : emp.subordinates) {
+                q.add(subOrdinate);
+            }
+        }
+        
+        return importance;
+    }
+}
+
+
+//DFS
+//Time complexity : O(V+E) -- (V : Vertices, E : Edges)
+//Space complexity : O(V+E)
+
+class Solution {
+    
+    int importance = 0;
+    Map<Integer, Employee> map;
+    public int getImportance(List<Employee> employees, int id) {
+        if(employees == null || employees.size() == 0) { return 0; }
+        
+        map = new HashMap<>();        
+        for(Employee e : employees) {
+            map.put(e.id, e);
+        }
+      
+        dfs(id);
+        return importance;
+    }
+    
+    
+    private void dfs(int id) {
+        Employee e = map.get(id);
+        importance = importance + e.importance;
+        
+        for(Integer subOrdinate : e.subordinates) {
+            dfs(subOrdinate);
+        }
+    }
+}
