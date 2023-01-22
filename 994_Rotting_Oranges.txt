@@ -1,0 +1,50 @@
+// Time Complexity : o(nm)
+// Space Complexity : o(nm)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+/*
+* Start BFS from all the rotten oranges.
+* At every BFS level , time taken to rot an orange is 1
+* After BFS is completed check if all the oranges are rotten and return the time taken
+* */
+
+class Solution {
+    public int orangesRotting(int[][] grid) {
+        int[][] dir = {{0,1},{0,-1}, {-1,0},{1,0}};
+        Queue<int[]> q = new LinkedList<>();
+        for(int i =0; i < grid.length; i++){
+            for(int j = 0;j < grid[0].length; j++){
+                if(grid[i][j] == 2){
+                    q.add(new int[]{i,j});
+                }
+            }
+        }
+        int res = 0;
+        while(!q.isEmpty()){
+            int size = q.size();
+            for(int i =0; i< size; i++){
+                int[] idx = q.poll();
+                for(int d = 0; d< dir.length; d++){
+                    int x = idx[0] + dir[d][0];
+                    int y = idx[1] + dir[d][1];
+                    if(x>=0 && y>=0 && x< grid.length && y< grid[0].length && grid[x][y] == 1){
+                        grid[x][y] = 2;
+                        q.add(new int[]{x,y});
+                    }
+                }
+            }
+            res++;
+        }
+        for(int i =0; i < grid.length; i++){
+            for(int j = 0;j < grid[0].length; j++){
+                if(grid[i][j] == 1){
+                   return -1;
+                }
+            }
+        }
+        return res == 0? 0: res-1;
+    }
+}
