@@ -2,6 +2,8 @@ class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
 
         # BFS APPROACH
+        # Time Complexity: O(m*n)
+        # Space Complexity: O(m*n)
         # rowlen = len(grid)
         # collen = len(grid[0])
         # count = 0 # To keep track of number of 1's in the array
