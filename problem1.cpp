@@ -1,5 +1,5 @@
-// TC: O(N);
-// SC: O(N)
+// TC: O(n*m);
+// SC: O(n*m)
 // Did it run on leetcode: yes
 
 // There are connected components so, we use dfs or bfs. In this case, BFS is more optimal than dfs.
