@@ -1,0 +1,98 @@
+"""
+Problem : 2
+
+Time Complexity : O(m) //m=length of the employees array
+Space Complexity : O(m)
+
+Did this code successfully run on Leetcode : Yes
+Any problem you faced while coding this : No
+
+
+For BFS - 
+Initializing a hashmap to reduce the employee id search time, with employee id as key and employee importance and its subordinates array as value
+initializing result to importance value of given id appending the subordinate list to the queue for the given employee, iterating over each list, searching for each subordinate in hashmap,
+adding its subordinate to the queue, and adding its importance to the result, performing all these operations until queue is empty, returning the result at the end
+
+For DFS - 
+Initializing a hashmap to reduce the employee id search time, with employee id as key and employee importance and its subordinates array as value
+initializing global variable result to importance value of given id, calling dfs function with the initial subordinate list
+the dfs function will iterate over each subordinate in the input parameter, add its importance value to the result variable and
+will call the dfs function again on its own subordinates and the process repeats until employee found with no subodinates
+
+
+
+"""
+
+# Employee Impotance
+
+# Approach - 1
+# BFS
+
+"""
+# Definition for Employee.
+class Employee(object):
+    def __init__(self, id, importance, subordinates):
+    	#################
+        :type id: int
+        :type importance: int
+        :type subordinates: List[int]
+        #################
+        self.id = id
+        self.importance = importance
+        self.subordinates = subordinates
+"""
+
+class Solution(object):
+    def getImportance(self, employees, id):
+        """
+        :type employees: List[Employee]
+        :type id: int
+        :rtype: int
+        """
+        q=collections.deque()
+        imp=0
+        hmap={}
+        # finding the index of employee
+        for i in range(len(employees)):
+            hmap[employees[i].id]=[employees[i].importance,employees[i].subordinates]
+            if employees[i].id==id:
+                imp+=employees[i].importance
+                q.append(employees[i].subordinates)
+        
+        while q:
+            currsubarr=q.popleft()
+
+            for currsub in currsubarr:
+                imp+=hmap[currsub][0]
+                q.append(hmap[currsub][1])
+        return imp
+    
+
+# Approach - 2
+# DFS
+
+
+class Solution(object):
+    def __init__(self):
+        self.imp=0
+        self.hmap={}
+    def getImportance(self, employees, id):
+        """
+        :type employees: List[Employee]
+        :type id: int
+        :rtype: int
+        """
+        subs=[]
+
+        for i in range(len(employees)):
+            self.hmap[employees[i].id]=[employees[i].importance,employees[i].subordinates]
+            if employees[i].id==id:
+                self.imp+=employees[i].importance
+                subs=employees[i].subordinates
+        self.dfs(subs)
+        return self.imp
+
+    def dfs(self,subs):
+            for i in range(len(subs)):
+                self.imp+=self.hmap[subs[i]][0]
+                self.dfs(self.hmap[subs[i]][1])      
