@@ -1,54 +1,113 @@
 import java.util.*;
 
-
 public class EmployeeImportanceBFS {
 
-        //BFS - Queue, HashMap - auxiliary DS
+    //BFS - Queue, HashMap - auxiliary DS
 
-        public int getImportance(List<Employee> employees, int id) {
+    public static class Employee {
 
-            //map employee id(attribute) to employee object
-            HashMap<Integer, Employee> map = new HashMap<>();
+        int id;
+        int importance;
+        public List<Integer> subordinates;
+    }
+    public int getImportance(List<Employee> employees, int id) {
 
-            if(employees == null) return 0;
+        //map employee id(attribute) to employee object
+        HashMap<Integer, Employee> map = new HashMap<>();
 
-            // for each employee object running over a list in for loop
-            for(Employee e: employees) {
+        if(employees == null) return 0;
 
-                //make map
-                map.put(e.id, e);
-            }
+        // for each employee object running over a list in for loop
+        for(Employee e: employees) {
 
-            //
-            Queue<Integer> q = new LinkedList<>();
-
-            int totalImp = 0;
-
-            //pass given id to queue
-            q.add(id);
-
-            //BFS until queue gets empty
-            while(!q.isEmpty()) {
-
-                // pop out id
-                int eid = q.poll();
-
-                // get importance of employee with popped id
-                Employee e = map.get(eid);
-
-                //increment importance
-                totalImp += e.importance;
-
-                // for each subordinate of popped employee running over a list in for loop
-                for(int subId: e.subordinates) {
-
-                    // add each subordinate id to queue to add its importance to result
-                    q.add(subId);
-                }
-            }
-            // output after BFS
-            return totalImp;
+            //make map
+            map.put(e.id, e);
         }
+
+        //
+        Queue<Integer> q = new LinkedList<>();
+
+        int totalImp = 0;
+
+        //pass given id to queue
+        q.add(id);
+
+        //BFS until queue gets empty
+        while(!q.isEmpty()) {
+
+            // pop out id
+            int eid = q.poll();
+
+            // get importance of employee with popped id
+            Employee e = map.get(eid);
+
+            //increment importance
+            totalImp += e.importance;
+
+            // for each subordinate of popped employee running over a list in for loop
+            for(int subId: e.subordinates) {
+
+                // add each subordinate id to queue to add its importance to result
+                q.add(subId);
+            }
+        }
+        // output after BFS
+        return totalImp;
+    }
+
+    public static void main(String[] args) {
+
+        EmployeeImportanceBFS object = new EmployeeImportanceBFS();
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the total number of employees: ");
+        int numEmployees = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character after reading the number
+
+        List<Employee> employeesList = new ArrayList<>();
+
+        for (int i = 0; i < numEmployees; i++) {
+            System.out.println("Enter details for employee " + (i + 1) + ":");
+
+            System.out.print("Enter employee ID: ");
+            int id = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character after reading the number
+
+            System.out.print("Enter employee importance: ");
+            int importance = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character after reading the number
+
+            System.out.print("Enter the number of subordinates: ");
+            int numSubordinates = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character after reading the number
+
+            List<Integer> subordinates = new ArrayList<>();
+
+            for (int j = 0; j < numSubordinates; j++) {
+                System.out.print("Enter subordinate ID " + (j + 1) + ": ");
+                int subordinateId = scanner.nextInt();
+                subordinates.add(subordinateId);
+            }
+
+            Employee employee = new Employee();
+            employee.id = id;
+            employee.importance = importance;
+            employee.subordinates = subordinates;
+
+            employeesList.add(employee);
+        }
+
+        System.out.print("Enter the given employee ID: ");
+        int desiredId = scanner.nextInt();
+
+        // Call the method with the list of employees and desired ID
+        int result = object.getImportance(employeesList, desiredId);
+        System.out.println("Result: " + result);
+
+    }
+
+
 
 
 }
