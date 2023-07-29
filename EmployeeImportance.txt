@@ -1,0 +1,48 @@
+/*
+// Definition for Employee.
+class Employee {
+    public int id;
+    public int importance;
+    public List<Integer> subordinates;
+};
+*/
+/**
+Time Complexity - O(N)
+Space Complexity - O(N)
+ */
+class Solution {
+
+    public int getImportance(List<Employee> employees, int id) {
+        Employee emp = findEmployee(employees, id);
+        if (emp == null) {
+            return -1;
+        }
+    
+        int sum = 0;
+        Queue<Employee> q = new LinkedList<>();
+        q.add(emp);
+
+        while (!q.isEmpty()) {
+            Employee e = q.poll();
+            sum += e.importance;
+            if (e.subordinates!= null && e.subordinates.size() > 0) {
+                for(int sub : e.subordinates) {
+                    q.add(findEmployee(employees, sub));
+                }
+            }
+        }
+        return sum;
+        
+    }
+
+    private Employee findEmployee(List<Employee> employees, int id) {
+        Employee emp = null;
+        for (Employee e : employees) {
+            if (e.id == id) {
+                emp = e;
+                break;
+            }
+        }
+        return emp;
+    }
+}
