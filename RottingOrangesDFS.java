@@ -39,7 +39,7 @@ public class RottingOrangesDFS {
                 return;
             }
 
-            if (grid[row][col] != 1 && grid[row][col] < time) {
+            if (grid[row][col] != 1 && grid[row][col] < time) { // grid[row][col] <= time -> Returns from first 2
                 return;
             }
 
