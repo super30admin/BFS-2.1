@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
+// TC - O(V+E) -> Here V=E since an employee reports to only one manager
+// SC - O(V+E)
+
 public class EmployeeImportanceBFS {
     // Definition for Employee.
     class Employee {

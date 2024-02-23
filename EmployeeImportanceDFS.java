@@ -2,6 +2,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// TC - O(V+E) -> Here V=E since an employee reports to only one manager
+// SC - O(V+E)
+
 public class EmployeeImportanceDFS {
     // Definition for Employee.
     class Employee {
